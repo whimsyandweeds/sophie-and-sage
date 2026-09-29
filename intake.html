@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sophie + Sage — Secret Intake</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --charcoal: #2B2D3A;
+      --dusted-iris: #B5A7C6;
+      --powder-blue: #A9C4D9;
+      --putty: #F0EBE5;
+      --sage-fog: #C5D1C7;
+      --slate: #4A4E5A;
+      --white: #FFFFFF;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Inter", system-ui, sans-serif;
+      --radius-pill: 999px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--sans); background: var(--putty); color: var(--slate); line-height: 1.5; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font-family: inherit; }
+    .top { display: flex; justify-content: space-between; align-items: center; padding: 18px 28px; background: var(--putty); }
+    .brand { font-family: var(--serif); font-size: 24px; color: var(--charcoal); }
+    .pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; padding: 8px 12px; border-radius: var(--radius-pill); }
+    .pill-iris { background: var(--dusted-iris); color: var(--charcoal); }
+    .pill-white { background: var(--white); color: var(--charcoal); border: 1px solid #E4DDD4; }
+    .pill-warn { background: var(--charcoal); color: var(--putty); }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 20px 24px 64px; }
+    .display { font-family: var(--serif); color: var(--charcoal); font-size: clamp(34px, 5vw, 52px); line-height: 1; font-weight: 500; }
+    .italic { font-family: var(--serif); font-style: italic; color: var(--dusted-iris); }
+    .lede { margin: 14px 0 22px; max-width: 620px; }
+    .modes { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
+    .mode-btn { border: 1px solid #D8D1C8; background: var(--white); color: var(--charcoal); border-radius: var(--radius-pill); padding: 10px 16px; cursor: pointer; font-size: 14px; }
+    .mode-btn.on { background: var(--charcoal); color: var(--putty); border-color: var(--charcoal); }
+    .panel { display: none; }
+    .panel.on { display: block; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .card { background: var(--white); border: 1px solid #E4DDD4; border-radius: 20px; padding: 22px; }
+    .dark-card { background: var(--charcoal); color: var(--putty); border: none; }
+    label { display: block; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #8A857E; margin: 12px 0 6px; }
+    .dark-card label { color: #B8B3AC; }
+    input, select, textarea { width: 100%; border: 1px solid #E4DDD4; background: #F7F3EE; border-radius: 12px; padding: 12px 14px; font-size: 15px; color: var(--charcoal); }
+    .dark-card input, .dark-card select, .dark-card textarea { background: #353746; border-color: #4A4E5A; color: var(--putty); }
+    textarea { min-height: 90px; resize: vertical; }
+    .hint { font-size: 12px; color: #8A857E; margin-top: 6px; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+    .btn { border: none; cursor: pointer; border-radius: var(--radius-pill); padding: 12px 18px; font-size: 14px; font-weight: 500; }
+    .btn-iris { background: var(--dusted-iris); color: var(--charcoal); }
+    .btn-ghost { background: transparent; border: 1px solid #C9C3BA; color: var(--charcoal); }
+    .btn-light { background: transparent; border: 1px solid rgba(240,235,229,.35); color: var(--putty); }
+    .chat-shell { display: grid; grid-template-columns: 280px 1fr; gap: 16px; min-height: 72vh; }
+    .chat-side { background: var(--charcoal); color: var(--putty); border-radius: 20px; padding: 20px; }
+    .chat-side h3 { font-family: var(--serif); font-size: 26px; font-weight: 500; margin: 8px 0 10px; }
+    .chat-side p { font-size: 13px; color: #C9C4BD; }
+    .steps-mini { margin-top: 18px; }
+    .steps-mini div { font-size: 13px; padding: 8px 0; border-bottom: 1px solid rgba(240,235,229,.12); color: #A8A39C; }
+    .steps-mini div.active { color: var(--putty); }
+    .steps-mini div.done { color: var(--sage-fog); }
+    .chat-main { background: var(--white); border: 1px solid #E4DDD4; border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; }
+    .chat-log { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; min-height: 420px; }
+    .bubble { max-width: 85%; padding: 12px 14px; border-radius: 16px; font-size: 14px; }
+    .bot { background: var(--putty); color: var(--charcoal); align-self: flex-start; }
+    .me { background: var(--charcoal); color: var(--putty); align-self: flex-end; }
+    .quick { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .quick button { border: 1px solid #E4DDD4; background: var(--white); border-radius: var(--radius-pill); padding: 7px 11px; cursor: pointer; font-size: 13px; }
+    .composer { display: flex; gap: 8px; padding: 14px; border-top: 1px solid #E4DDD4; }
+    .composer input { flex: 1; }
+    .packet { margin-top: 14px; background: #F7F3EE; border-radius: 14px; padding: 14px; font-size: 13px; white-space: pre-wrap; }
+    @media (max-width: 860px) { .grid-2, .chat-shell { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="index.html">Sophie + Sage</a>
+    <div class="pills">
+      <span class="pill pill-iris">Founder-led • Survivor-led</span>
+      <span class="pill pill-white">Zero-footprint intake</span>
+      <span class="pill pill-warn">Do not use a monitored device</span>
+    </div>
+  </header>
+  <main class="wrap">
+    <h1 class="display">Secret intake.<br><span class="italic">Partner or client-safe.</span></h1>
+    <p class="lede">Three doors. Partner referral form, a stripped client version, and a private AI chat that builds the blueprint packet. Nothing here is a public client list.</p>
+    <div class="modes">
+      <button class="mode-btn on" data-mode="partner">Partner referral</button>
+      <button class="mode-btn" data-mode="client">Client-safe form</button>
+      <button class="mode-btn" data-mode="chat">Secret AI chat</button>
+    </div>
+    <section class="panel on" id="partner">
+      <div class="grid-2">
+        <form class="card" id="partnerForm">
+          <p class="pill pill-white" style="display:inline-block;margin-bottom:8px;">You keep the relationship</p>
+          <h2 class="display" style="font-size:32px;">Refer a client</h2>
+          <div class="grid-2">
+            <div><label>Your name</label><input name="partner_name" required placeholder="Tonya / practice name" /></div>
+            <div><label>Role</label>
+              <select name="partner_role">
+                <option>Coach</option>
+                <option>Family law / public defender</option>
+                <option>Housing coordinator / advocate</option>
+                <option>Other partner</option>
+              </select>
+            </div>
+          </div>
+          <label>Safe partner channel</label>
+          <input name="partner_channel" placeholder="Signal username or ProtonMail" />
+          <label>Client alias only</label>
+          <input name="client_alias" placeholder="Alias / initials" />
+          <label>Tier requested</label>
+          <select name="tier">
+            <option value="250">Tier 01 — Exit Blueprint ($250)</option>
+            <option value="750">Tier 02 — Rapid Housing Placement ($750)</option>
+          </select>
+          <label>What is already true</label>
+          <textarea name="context" placeholder="Emotionally ready? Protective order? Pets? Kids? Housing market?"></textarea>
+          <label>Device / surveillance notes</label>
+          <textarea name="risk" placeholder="Monitored phone, shared accounts, location tracking, financial control"></textarea>
+          <div class="actions">
+            <button class="btn btn-iris" type="submit">Send partner packet →</button>
+            <a class="btn btn-ghost" href="index.html">Back to site</a>
+          </div>
+          <p class="hint">Prototype only: this stays in your browser unless you wire a backend.</p>
+        </form>
+        <aside class="card dark-card">
+          <h3 class="display" style="font-size:28px;color:var(--putty);">Partner rules</h3>
+          <p style="margin-top:12px;color:#D4CFC8;">We never contact her directly without explicit safe-channel consent. Updates go to you.</p>
+        </aside>
+      </div>
+    </section>
+    <section class="panel" id="client">
+      <div class="grid-2">
+        <form class="card" id="clientForm">
+          <p class="pill pill-iris" style="display:inline-block;margin-bottom:8px;">Client-safe • alias first</p>
+          <h2 class="display" style="font-size:32px;">Quiet checklist</h2>
+          <p class="hint">If this device is shared or tracked, stop.</p>
+          <label>Who referred you?</label>
+          <input name="referrer" placeholder="Coach / attorney first name" />
+          <label>What should we call you</label>
+          <input name="alias" placeholder="Chosen name or alias" />
+          <label>Can we reply on this device?</label>
+          <select name="safe_device">
+            <option>No — partner only</option>
+            <option>Yes — this channel is safe</option>
+            <option>Not sure</option>
+          </select>
+          <label>Most urgent need</label>
+          <select name="need">
+            <option>Private housing</option>
+            <option>Utilities + waivers</option>
+            <option>Movers + storage</option>
+            <option>Budget / blueprint only</option>
+            <option>Not sure yet</option>
+          </select>
+          <label>Anything we must not write down</label>
+          <textarea name="do_not_record" placeholder="Optional. Leave blank if safer."></textarea>
+          <div class="actions"><button class="btn btn-iris" type="submit">Hold this quietly →</button></div>
+        </form>
+        <aside class="card">
+          <h3 class="display" style="font-size:28px;">What we will not ask here</h3>
+          <p style="margin-top:12px;">No current address. No employer. No children’s school. No passwords.</p>
+        </aside>
+      </div>
+    </section>
+    <section class="panel" id="chat">
+      <div class="chat-shell">
+        <aside class="chat-side">
+          <span class="pill pill-iris">Backend intake AI</span>
+          <h3>Secret chat</h3>
+          <p>Walks a partner through blueprint questions. Answers stay in this tab until you copy the packet.</p>
+          <div class="steps-mini" id="chatSteps"></div>
+          <button class="btn btn-light" id="resetChat" style="margin-top:18px;">Reset chat</button>
+        </aside>
+        <div class="chat-main">
+          <div class="chat-log" id="chatLog"></div>
+          <div class="composer">
+            <input id="chatInput" placeholder="Type a short answer…" />
+            <button class="btn btn-iris" id="chatSend">Send</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const buttons = document.querySelectorAll(".mode-btn");
+    const panels = document.querySelectorAll(".panel");
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        buttons.forEach((b) => b.classList.remove("on"));
+        panels.forEach((p) => p.classList.remove("on"));
+        btn.classList.add("on");
+        document.getElementById(btn.dataset.mode).classList.add("on");
+      });
+    });
+    document.getElementById("partnerForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target).entries());
+      alert("Partner packet captured locally.\n\n" + JSON.stringify(data, null, 2));
+    });
+    document.getElementById("clientForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target).entries());
+      alert("Client-safe note stored in this browser session only.\n\n" + JSON.stringify(data, null, 2));
+    });
+    const QUESTIONS = [
+      { id: "who", text: "Are you the referring partner, or is this a client on a safe device?", options: ["Referring partner", "Client on a safe device", "Not sure if this device is safe"] },
+      { id: "alias", text: "What alias should we use in the packet? No legal name needed." },
+      { id: "window", text: "What execution window are we building toward?", options: ["30 days", "60 days", "90 days", "Unknown"] },
+      { id: "need", text: "What must move first?", options: ["Housing", "Utilities / waivers", "Movers + storage", "Blueprint only"] },
+      { id: "risk", text: "Any surveillance we must assume? Shared phone, location tracking, financial monitoring — short is fine." },
+      { id: "pets", text: "Pets, kids, or property that have to come with her?", options: ["Pets", "Kids", "Both", "Neither / not sharing"] },
+      { id: "tier", text: "Which door should I open?", options: ["$250 Blueprint", "$750 Full execution", "Decide after packet"] }
+    ];
+    const chatLog = document.getElementById("chatLog");
+    const chatSteps = document.getElementById("chatSteps");
+    const chatInput = document.getElementById("chatInput");
+    const answers = {};
+    let step = 0;
+    function renderSteps() {
+      chatSteps.innerHTML = QUESTIONS.map((q, i) => {
+        const cls = i < step ? "done" : i === step ? "active" : "";
+        return `<div class="${cls}">${String(i + 1).padStart(2, "0")}  ${q.id}</div>`;
+      }).join("");
+    }
+    function addBubble(text, who, options) {
+      const div = document.createElement("div");
+      div.className = "bubble " + who;
+      div.textContent = text;
+      if (options && who === "bot") {
+        const row = document.createElement("div");
+        row.className = "quick";
+        options.forEach((opt) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.textContent = opt;
+          b.addEventListener("click", () => submitAnswer(opt));
+          row.appendChild(b);
+        });
+        div.appendChild(row);
+      }
+      chatLog.appendChild(div);
+      chatLog.scrollTop = chatLog.scrollHeight;
+    }
+    function askCurrent() {
+      renderSteps();
+      if (step >= QUESTIONS.length) { finishPacket(); return; }
+      const q = QUESTIONS[step];
+      addBubble(q.text, "bot", q.options);
+    }
+    function finishPacket() {
+      const packet = `SOPHIE + SAGE — INTAKE PACKET (local)
+Alias: ${answers.alias || "—"}
+Who is speaking: ${answers.who || "—"}
+Window: ${answers.window || "—"}
+First need: ${answers.need || "—"}
+Risk notes: ${answers.risk || "—"}
+Household notes: ${answers.pets || "—"}
+Tier: ${answers.tier || "—"}`;
+      addBubble("Packet ready. Copy this and send on Signal / Proton.", "bot");
+      const pre = document.createElement("div");
+      pre.className = "packet";
+      pre.textContent = packet;
+      chatLog.appendChild(pre);
+    }
+    function submitAnswer(text) {
+      const clean = (text || "").trim();
+      if (!clean || step >= QUESTIONS.length) return;
+      answers[QUESTIONS[step].id] = clean;
+      addBubble(clean, "me");
+      step += 1;
+      chatInput.value = "";
+      askCurrent();
+    }
+    document.getElementById("chatSend").addEventListener("click", () => submitAnswer(chatInput.value));
+    chatInput.addEventListener("keydown", (e) => { if (e.key === "Enter") submitAnswer(chatInput.value); });
+    document.getElementById("resetChat").addEventListener("click", () => {
+      Object.keys(answers).forEach((k) => delete answers[k]);
+      step = 0;
+      chatLog.innerHTML = "";
+      addBubble("This chat is a discreet intake walker. If the device is monitored, close this tab.", "bot");
+      askCurrent();
+    });
+    addBubble("This chat is a discreet intake walker. If the device is monitored, close this tab.", "bot");
+    askCurrent();
+  </script>
+</body>
+</html>
