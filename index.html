@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sophie + Sage — Logistics Exit Concierge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+:root{--charcoal:#2B2D3A;--dusted-iris:#B5A7C6;--powder-blue:#A9C4D9;--putty:#F0EBE5;--sage-fog:#C5D1C7;--slate:#4A4E5A;--white:#fff;--serif:"Cormorant Garamond",Georgia,serif;--sans:Inter,system-ui,sans-serif;--pill:999px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-snap-type:y proximity;scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--slate);background:var(--putty);line-height:1.5}
+a{color:inherit;text-decoration:none}
+.float-pills{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:80;display:flex;gap:8px}
+.float-pills span,.pill-iris,.mini-pill,.tag,.credit-pill,.loc-pill,.fp,.chip,.promise-pill{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:8px 12px;border-radius:var(--pill)}
+.pill-iris{background:var(--dusted-iris);color:var(--charcoal)}
+.pill-white{background:#fff;color:var(--charcoal);border:1px solid #E4DDD4;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:8px 12px;border-radius:var(--pill)}
+.site-header{position:sticky;top:0;z-index:60;height:72px;background:var(--putty);display:flex;align-items:center;justify-content:space-between;padding:0 40px}
+.brand{display:flex;align-items:baseline;gap:12px}
+.brand-name{font-family:var(--serif);font-size:26px;color:var(--charcoal)}
+.brand-tag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8A857E}
+.header-right{display:flex;align-items:center;gap:18px}
+.loc-pill{border:1px solid #D5CFC6;color:var(--charcoal)}
+.pricing-link{font-size:14px;border-bottom:1px solid var(--charcoal)}
+.snap{scroll-snap-align:start;min-height:100vh;padding:88px 48px 72px}
+.wrap{max-width:1180px;margin:0 auto}
+.display{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;line-height:.98;color:var(--charcoal)}
+.italic{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--dusted-iris)}
+.lede{font-size:16px;max-width:520px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:var(--pill);padding:13px 22px;font-size:14px;font-weight:500}
+.btn-iris{background:var(--dusted-iris);color:var(--charcoal)}
+.btn-ghost-light{border:1px solid rgba(240,235,229,.35);color:var(--putty)}
+.btn-ghost-dark{border:1px solid #C9C3BA;color:var(--charcoal)}
+.btn-wide{width:100%;border-radius:14px}
+#hero{background:radial-gradient(900px 500px at 72% 38%,rgba(181,167,198,.18),transparent 60%),var(--charcoal);color:var(--putty);padding-top:48px}
+#hero .display{color:var(--putty);font-size:clamp(42px,5.4vw,68px)}#hero .italic{font-size:clamp(40px,5.2vw,64px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.hero-badge{display:inline-block;background:var(--sage-fog);color:var(--charcoal);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:7px 12px;border-radius:var(--pill);margin-bottom:22px}
+.hero-copy{margin-top:22px;color:#D4CFC8;max-width:520px}
+.hero-actions{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+.hero-footnotes{display:flex;gap:22px;margin-top:36px;font-size:13px;color:#A8A39C;flex-wrap:wrap}
+.snapshot{border:1px solid rgba(197,209,199,.28);background:rgba(53,55,70,.55);border-radius:24px;padding:22px}
+.snapshot-head{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#C9C4BD;margin-bottom:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--dusted-iris)}
+.stat-row{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(240,235,229,.12)}
+.stat-value{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--putty)}
+.handle-box{background:var(--putty);color:var(--charcoal);border-radius:16px;padding:18px 20px}
+.handle-box h4{font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.handle-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;font-size:14px}
+.check{display:flex;align-items:center;gap:8px}
+.check i{width:16px;height:16px;border-radius:50%;background:var(--sage-fog);color:var(--charcoal);font-style:normal;font-size:10px;display:grid;place-items:center}
+#problem .display,#what .display,#audiences .display,#pricing .display,#steps .display,#discretion .display{font-size:clamp(40px,5vw,60px)}
+.problem-lede{margin:18px 0 36px;max-width:560px}
+.cards-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:#fff;border:1px solid #E4DDD4;border-radius:20px;padding:22px 20px 24px}
+.num-chip,.svc-num,.ring{width:34px;height:34px;border-radius:50%;background:#EFE8E0;display:grid;place-items:center;font-size:11px;font-weight:600;margin-bottom:18px;color:var(--charcoal)}
+.card h3{font-family:var(--serif);font-size:22px;line-height:1.15;color:var(--charcoal);margin-bottom:10px}
+.card p{font-size:14px}
+#what{background:#fff}.what-top,.steps-top,.disc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:36px}
+.side-meta{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A857E}
+.service-card{position:relative}.svc-dot{position:absolute;top:22px;right:22px;width:8px;height:8px;border-radius:50%}
+.c-iris{background:var(--dusted-iris)}.c-blue{background:var(--powder-blue)}.c-sage{background:var(--sage-fog)}
+.aud-grid,.close-grid,.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.aud-grid{grid-template-columns:.85fr 1.15fr;gap:48px}
+.credit-pill{display:inline-block;margin-top:28px;border:1px solid #D5CFC6;background:#fff;color:var(--charcoal)}
+.aud-card{background:#fff;border:1px solid #E4DDD4;border-radius:20px;padding:22px 24px;margin-bottom:14px}
+.aud-card-top{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}
+.aud-card h3{font-family:var(--serif);font-size:28px;font-weight:500;color:var(--charcoal)}
+.mini-pill{background:#EFE8E0;color:var(--charcoal)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tag{background:#F3EEE8;border:1px solid #E4DDD4;color:var(--slate);font-weight:500;letter-spacing:0;text-transform:none;font-size:12px}
+#pricing{background:#fff}.tier{border-radius:24px;padding:28px 26px 22px;border:1px solid #E4DDD4;position:relative}
+.tier-01{background:var(--putty)}.tier-02{background:#fff;box-shadow:0 18px 50px rgba(43,45,58,.06)}
+.most{position:absolute;top:0;right:24px;background:var(--dusted-iris);color:var(--charcoal);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:8px 12px;border-radius:0 0 12px 12px}
+.tier-kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A857E}
+.tier-title-row{display:flex;justify-content:space-between;margin:8px 0 16px}
+.tier h3{font-family:var(--serif);font-size:32px;color:var(--charcoal);font-weight:500}
+.price b{font-family:var(--serif);font-size:42px;font-weight:500;color:var(--charcoal)}
+.price small{display:block;font-size:11px;letter-spacing:.12em;color:#8A857E}
+.includes{display:inline-block;background:#EFE8E0;border-radius:var(--pill);padding:6px 12px;font-size:13px;margin-bottom:16px}
+.feat{display:flex;gap:10px;align-items:flex-start;margin:10px 0;font-size:14px}
+.feat i{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11px}
+.feat-sage i{background:var(--sage-fog)}.feat-iris i{background:var(--dusted-iris)}
+.best-for{background:#fff;border-radius:12px;padding:12px 14px;font-size:13px;margin:18px 0 14px}
+.fine{text-align:center;font-size:12px;color:#8A857E;margin-top:10px}
+#steps{background:var(--putty)}.steps-note{max-width:280px;font-size:14px;text-align:right}
+.steps-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ring{border:1.5px solid var(--charcoal);background:#fff}
+#discretion{background:#fff}.sub-italic{font-family:var(--serif);font-style:italic;color:var(--dusted-iris);font-size:22px;margin-top:6px}
+.disc-card{background:var(--putty)}
+.icon-circ{width:28px;height:28px;border-radius:50%;background:#fff;border:1px solid #E4DDD4;display:grid;place-items:center;margin-bottom:14px}
+.promise{margin-top:22px;background:var(--charcoal);color:var(--putty);border-radius:18px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.promise-left{display:flex;gap:12px;align-items:flex-start;max-width:760px}
+.bang{width:28px;height:28px;border-radius:50%;background:var(--dusted-iris);color:var(--charcoal);display:grid;place-items:center;font-weight:700;flex-shrink:0}
+.promise-pill{background:var(--putty);color:var(--charcoal)}
+#close{background:var(--charcoal);color:var(--putty);padding-bottom:0}
+#close .display{color:var(--putty);font-size:clamp(42px,5.4vw,64px)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px;padding-top:22px;border-top:1px solid rgba(240,235,229,.15);max-width:460px}
+.metrics b{display:block;font-family:var(--serif);font-style:italic;font-size:28px;font-weight:500;color:var(--putty);margin-top:4px}
+.founder{border:1px solid rgba(197,209,199,.28);background:rgba(53,55,70,.45);border-radius:24px;padding:22px}
+.founder-who{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--putty);color:var(--charcoal);display:grid;place-items:center;font-weight:600}
+.founder-who h4{color:var(--putty);font-size:15px}.founder-who p{font-size:12px;color:#B8B3AC}
+.quote-box{background:var(--putty);color:var(--charcoal);border-radius:16px;padding:18px 20px}
+.quote-box blockquote{font-family:var(--serif);font-style:italic;font-size:20px;line-height:1.35;margin-bottom:12px}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{border:1px solid rgba(240,235,229,.25);color:var(--putty);font-weight:500;letter-spacing:0;text-transform:none}
+.site-footer{margin-top:56px;border-top:1px solid rgba(240,235,229,.12);padding:28px 0 36px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.site-footer h5{font-family:var(--serif);font-size:22px;color:var(--putty);margin-bottom:6px}
+.site-footer p{font-size:13px;color:#B8B3AC;max-width:360px}
+.fp-sage{background:var(--sage-fog);color:var(--charcoal)}.fp-iris{background:var(--dusted-iris);color:var(--charcoal)}.fp-blue{background:var(--powder-blue);color:var(--charcoal)}
+.copy{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8E8983}
+@media(max-width:980px){.snap{padding:80px 22px 56px}.hero-grid,.aud-grid,.close-grid,.price-grid,.cards-4,.cards-3,.steps-row{grid-template-columns:1fr}.what-top,.steps-top,.disc-head,.promise{flex-direction:column;align-items:flex-start}.steps-note,.foot-right{text-align:left}}
+</style>
+</head>
+<body>
+<div class="float-pills"><span class="pill-iris">Founder-led • Survivor-led</span><span class="pill-white">Zero-footprint • Flat-fee</span></div>
+<header class="site-header"><div class="brand"><div class="brand-name">Sophie + Sage</div><div class="brand-tag">Logistics Exit Concierge</div></div><div class="header-right"><div class="loc-pill">Henderson, NV • Remote</div><a class="pricing-link" href="#pricing">Pricing →</a></div></header>
+<section class="snap" id="hero"><div class="wrap hero-grid"><div>
+<div class="hero-badge">Trauma-informed • Survivor-led</div>
+<h1 class="display">Your client is ready<br>to transition.</h1>
+<div class="italic">Now she needs a<br>logistics strategy.</div>
+<p class="hero-copy">Sophie + Sage is the outsourced execution arm for coaches, family-law attorneys, and housing advocates. Private housing. Utilities. Movers. Zero paper trail. We never replace your coaching — we protect your zone of genius so you can stay in it.</p>
+<div class="hero-actions"><a class="btn btn-iris" href="intake.html">Refer a client →</a><a class="btn btn-ghost-light" href="intake.html">15-min partner intro</a></div>
+<div class="hero-footnotes"><span>No client poaching, ever</span><span>24–72h turnaround</span><span>Zero-footprint by default</span></div>
+</div>
+<aside class="snapshot"><div class="snapshot-head"><span>Operational relief snapshot</span><span class="dot"></span></div>
+<div class="stat-row"><span>Avg. admin hours saved / client</span><span class="stat-value">20+ hrs</span></div>
+<div class="stat-row"><span>Execution window</span><span class="stat-value">30 / 60 / 90 days</span></div>
+<div class="stat-row"><span>Billing model</span><span class="stat-value">Flat-fee, no retainers</span></div>
+<div class="handle-box"><h4>What we handle</h4><div class="handle-grid">
+<div class="check"><i>✓</i> Private housing</div><div class="check"><i>✓</i> Utilities + waivers</div>
+<div class="check"><i>✓</i> Movers + storage</div><div class="check"><i>✓</i> Paper trail scrub</div>
+<div class="check"><i>✓</i> Document checklist</div><div class="check"><i>✓</i> Credit triage</div>
+</div></div></aside></div></section>
+<section class="snap" id="problem"><div class="wrap">
+<h2 class="display">The healing is done. <span class="italic">The housing</span><br>isn't.</h2>
+<p class="lede problem-lede">Coaches get clients emotionally ready — then the logistics stall everything. Monitored devices, financial control, and 20+ hours of hold times mean your client can't execute without risk.</p>
+<div class="cards-4">
+<article class="card"><div class="num-chip">01</div><h3>Emotionally ready, logistically paralyzed</h3><p>Leases, deposits, utilities feel impossible under surveillance.</p></article>
+<article class="card"><div class="num-chip">02</div><h3>20+ hours of hold times she can't safely do</h3><p>Monitored comms and financial control block execution.</p></article>
+<article class="card"><div class="num-chip">03</div><h3>Emergency shelter feels unsafe</h3><p>She wants private, dignified housing that keeps property and pets.</p></article>
+<article class="card"><div class="num-chip">04</div><h3>You carry the operational burden</h3><p>No staff to outsource the physical friction to.</p></article>
+</div></div></section>
+<section class="snap" id="what"><div class="wrap"><div class="what-top"><div>
+<h2 class="display">You do the healing.<br><span class="italic">We do the logistics.</span></h2>
+<p class="lede" style="margin-top:16px">We convert terrifying exit plans into <strong>30 / 60 / 90-day roadmaps</strong> — zero-footprint, discreet, survivor-led.</p>
+</div><div class="side-meta">Survivor-operated • Henderson, NV</div></div>
+<div class="cards-3">
+<article class="card service-card"><div class="svc-num c-iris">01</div><span class="svc-dot c-iris"></span><h3>Exit Budgeting</h3><p>Cost-of-living audit built for monitored finances.</p></article>
+<article class="card service-card"><div class="svc-num c-blue">02</div><span class="svc-dot c-blue"></span><h3>Lease + Utilities</h3><p>Application management, Third-Party Designee, DV waiver advocacy.</p></article>
+<article class="card service-card"><div class="svc-num c-sage">03</div><span class="svc-dot c-sage"></span><h3>Encrypted & Discreet</h3><p>Safe intake via Signal/Proton. Every workflow assumes surveillance.</p></article>
+</div></div></section>
+<section class="snap" id="audiences"><div class="wrap aud-grid"><div>
+<h2 class="display">We never compete<br>with your<br><span class="italic">zone of genius.</span></h2>
+<p class="lede" style="margin-top:16px">You keep the relationship. We execute the friction.</p>
+<div class="credit-pill">Your client • Your credit • Our execution</div></div><div>
+<article class="aud-card"><div class="aud-card-top"><h3>Coaches</h3><span class="mini-pill">3 Deliverables</span></div><p>Trauma-informed coaches who need a safe execution partner after the breakthrough.</p><div class="tags"><span class="tag">No coaching overlap</span><span class="tag">White-label updates</span></div></article>
+<article class="aud-card"><div class="aud-card-top"><h3>Family law & public defenders</h3><span class="mini-pill">3 Deliverables</span></div><p>Housing logistics while they handle protective orders. We don't give legal advice.</p><div class="tags"><span class="tag">Third-Party Designee</span><span class="tag">DV utility waivers</span></div></article>
+<article class="aud-card"><div class="aud-card-top"><h3>Housing coordinators & advocates</h3><span class="mini-pill">3 Deliverables</span></div><p>Outsource the 20+ hour grind.</p><div class="tags"><span class="tag">Application management</span><span class="tag">Flat-fee invoicing</span></div></article>
+</div></div></section>
+<section class="snap" id="pricing"><div class="wrap"><div class="price-head" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:28px">
+<h2 class="display">Simple, flat-fee. <span class="italic">No retainers.</span></h2></div>
+<div class="price-grid"><article class="tier tier-01"><div class="tier-kicker">Tier 01 • Strategy only</div><div class="tier-title-row"><h3>The Exit Blueprint</h3><div class="price"><b>$250</b><small>FLAT</small></div></div>
+<div class="feat feat-sage"><i>✓</i> Cost-of-living audit</div>
+<div class="feat feat-sage"><i>✓</i> 30/60/90-day survival budget</div>
+<div class="feat feat-sage"><i>✓</i> Credit & debt triage</div>
+<div class="feat feat-sage"><i>✓</i> Utility & document checklist</div>
+<div class="best-for">Best for clients who can self-execute with a clear roadmap.</div>
+<a class="btn btn-ghost-dark btn-wide" href="intake.html">Get the Blueprint →</a></article>
+<article class="tier tier-02"><div class="most">Most requested</div><div class="tier-kicker">Tier 02 • Full execution</div><div class="tier-title-row"><h3>Rapid Housing Placement</h3><div class="price"><b>$750</b><small>FLAT</small></div></div>
+<div class="includes">Includes Tier 1 + full execution</div>
+<div class="feat feat-iris"><i>✓</i> Full execution, white-glove</div>
+<div class="feat feat-iris"><i>✓</i> Utility concierge + DV waivers</div>
+<div class="feat feat-iris"><i>✓</i> Housing application management</div>
+<div class="feat feat-iris"><i>✓</i> Physical move coordination</div>
+<div class="feat feat-iris"><i>✓</i> Zero-footprint comms</div>
+<a class="btn btn-iris btn-wide" href="intake.html" style="margin-top:18px">Refer for Placement →</a></article></div></div></section>
+<section class="snap" id="steps"><div class="wrap"><div class="steps-top"><div>
+<h2 class="display">Intake to move-in <span class="italic">in 4<br>steps.</span></h2></div>
+<p class="steps-note">Designed for monitored reality. No app downloads.</p></div>
+<div class="steps-row">
+<article class="card"><div class="ring">01</div><h3>Safe Intake</h3><p>Signal or Proton via referral partner.</p></article>
+<article class="card"><div class="ring">02</div><h3>Blueprint</h3><p>30/60/90-day budget delivered to partner if unsafe.</p></article>
+<article class="card"><div class="ring">03</div><h3>Execution</h3><p>Applications, waivers, movers, storage.</p></article>
+<article class="card"><div class="ring">04</div><h3>Handoff</h3><p>Stabilized housing + utilities. You keep the relationship.</p></article>
+</div></div></section>
+<section class="snap" id="discretion"><div class="wrap"><div class="disc-head"><div>
+<h2 class="display">Discretion <span class="italic">by design.</span></h2>
+<p class="sub-italic">Safety is the product — not a feature</p></div></div>
+<div class="cards-4">
+<article class="card disc-card"><h3>Encrypted intake</h3><p>Signal / Proton only. No SMS.</p></article>
+<article class="card disc-card"><h3>No paper trail</h3><p>Third-Party Designee. Her name stays off hold queues.</p></article>
+<article class="card disc-card"><h3>Surveillance-aware</h3><p>Every step assumes monitoring.</p></article>
+<article class="card disc-card"><h3>Partner-first handoff</h3><p>We never contact her without safe-channel consent.</p></article>
+</div>
+<div class="promise"><div class="promise-left"><div class="bang">!</div><p><strong>Operational promise:</strong> We never replace your coaching, legal counsel, or advocacy.</p></div><div class="promise-pill">Referral-only • No public client list</div></div>
+</div></section>
+<section class="snap" id="close"><div class="wrap"><div class="close-grid"><div>
+<h2 class="display">Let's make exit<br><span class="italic">executable.</span></h2>
+<p class="lede" style="color:#D4CFC8;margin-top:16px">Your client has done the hardest part — deciding to leave.</p>
+<div class="hero-actions"><a class="btn btn-iris" href="intake.html">Refer a client →</a><a class="btn btn-ghost-light" href="intake.html">15-min partner intro • Signal available</a></div>
+<div class="metrics"><div><b>24–72h</b></div><div><b>Flat-fee</b></div><div><b>Zero</b></div></div>
+</div>
+<aside class="founder"><div class="founder-who"><div class="avatar">T</div><div><h4>Founder: Tonya — Director of Logistics</h4><p>Survivor-led • Systems-obsessed • Henderson, NV</p></div></div>
+<div class="quote-box"><blockquote>“I built Sophie + Sage because I've lived the gap between ready to leave and having no safe way to do the logistics.”</blockquote>
+<p>We don't coach. We don't provide legal advice. We make the exit you planned actually executable.</p></div>
+<div class="chip-row"><span class="chip">Signal</span><span class="chip">ProtonMail</span><span class="chip">Third-Party Designee</span><span class="chip">Remote • US</span></div>
+</aside></div>
+<footer class="site-footer"><div><h5>Sophie + Sage</h5><p>Logistics Exit Concierge • Referral-only • Henderson, NV</p><p style="margin-top:8px">hello@sophieandsage.co • Signal by referral</p></div>
+<div class="foot-right"><div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;margin-bottom:10px"><span class="fp fp-sage">Operational relief</span><span class="fp fp-iris">Safety & discretion</span><span class="fp fp-blue">Cost efficiency</span></div>
+<div class="copy">© 2026 Sophie + Sage • Flat-fee • Survivor-led</div></div></footer>
+</div></section>
+</body></html>
