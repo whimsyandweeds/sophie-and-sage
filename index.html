@@ -7,152 +7,92 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
-:root{--charcoal:#2B2D3A;--dusted-iris:#B5A7C6;--powder-blue:#A9C4D9;--putty:#F0EBE5;--sage-fog:#C5D1C7;--slate:#4A4E5A;--white:#fff;--serif:"Cormorant Garamond",Georgia,serif;--sans:Inter,system-ui,sans-serif;--pill:999px}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-snap-type:y proximity;scroll-behavior:smooth}
-body{font-family:var(--sans);color:var(--slate);background:var(--putty);line-height:1.5}
-a{color:inherit;text-decoration:none}
-.float-pills{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:80;display:flex;gap:8px}
-.float-pills span,.pill-iris,.mini-pill,.tag,.credit-pill,.loc-pill,.fp,.chip,.promise-pill{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:8px 12px;border-radius:var(--pill)}
-.pill-iris{background:var(--dusted-iris);color:var(--charcoal)}
-.pill-white{background:#fff;color:var(--charcoal);border:1px solid #E4DDD4;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:8px 12px;border-radius:var(--pill)}
-.site-header{position:sticky;top:0;z-index:60;height:72px;background:rgba(240,235,229,.92);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 40px}
-.brand-name{font-family:var(--serif);font-size:26px;color:var(--charcoal)}
-.brand-tag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8A857E;margin-left:10px}
-.header-right{display:flex;align-items:center;gap:18px}
-.loc-pill{border:1px solid #D5CFC6;color:var(--charcoal)}
-.pricing-link{font-size:14px;border-bottom:1px solid var(--charcoal)}
-.snap{scroll-snap-align:start;min-height:100vh;padding:88px 48px 72px}
-.wrap{max-width:1180px;margin:0 auto}
-.display{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;line-height:.98;color:var(--charcoal)}
-.italic{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--dusted-iris)}
-.lede{font-size:16px;max-width:520px}
-.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:var(--pill);padding:13px 22px;font-size:14px;font-weight:500}
-.btn-iris{background:var(--dusted-iris);color:var(--charcoal)}
-.btn-ghost-light{border:1px solid rgba(240,235,229,.35);color:var(--putty)}
-.btn-ghost-dark{border:1px solid #C9C3BA;color:var(--charcoal)}
-.btn-wide{width:100%;border-radius:14px}
-#hero{background:radial-gradient(900px 500px at 78% 30%,rgba(181,167,198,.2),transparent 55%),linear-gradient(180deg,rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),var(--charcoal);background-size:auto,44px 44px,44px 44px,auto;color:var(--putty);padding-top:48px}
-#hero .display{color:var(--putty);font-size:clamp(40px,5vw,64px)}#hero .italic{font-size:clamp(36px,4.8vw,58px)}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
-.hero-badge{display:inline-block;background:var(--sage-fog);color:var(--charcoal);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:7px 12px;border-radius:var(--pill);margin-bottom:22px}
-.hero-copy{margin-top:22px;color:#D4CFC8;max-width:520px}
-.hero-actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
-.photo-stage{display:flex;flex-direction:column;gap:12px}
-.photo-pair{display:grid;grid-template-columns:1fr 1fr;height:230px;border-radius:22px;overflow:hidden;box-shadow:0 28px 60px rgba(0,0,0,.38)}
-.photo-pair figure{position:relative;margin:0;height:230px;overflow:hidden}
-.photo-pair img{width:100%;height:230px;object-fit:cover;object-position:center;display:block}
-.photo-cap{position:absolute;top:12px;left:12px;max-width:calc(100% - 24px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(43,45,58,.78);color:var(--putty);font-size:10px;letter-spacing:.11em;text-transform:uppercase;font-weight:600;padding:7px 10px;border-radius:var(--pill)}
-.cap-light{background:rgba(240,235,229,.9);color:var(--charcoal)}
-.status-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.status{font-size:11px;font-weight:600;padding:6px 11px;border-radius:var(--pill)}
-.st-sage{background:#2f4f46;color:#b7e0c8}.st-iris{background:#3b3348;color:var(--dusted-iris)}.st-mute{background:#3a3d4a;color:#c9c4bd}
-.snapshot{border:1px solid rgba(197,209,199,.28);background:linear-gradient(180deg,rgba(53,55,70,.88),rgba(43,45,58,.78));border-radius:24px;padding:20px;box-shadow:0 24px 50px rgba(0,0,0,.28)}
-.snapshot-head{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#C9C4BD;margin-bottom:8px}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--dusted-iris)}
-.stat-row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(240,235,229,.12)}
-.stat-value{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--putty)}
-.handle-box{background:var(--putty);color:var(--charcoal);border-radius:16px;padding:16px 18px}
-.handle-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;font-size:14px}
-.check{display:flex;align-items:center;gap:8px}
-.check i{width:16px;height:16px;border-radius:50%;background:var(--sage-fog);display:grid;place-items:center;font-style:normal;font-size:10px}
-.cards-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{background:#fff;border:1px solid #E4DDD4;border-radius:20px;padding:22px 20px;box-shadow:0 10px 28px rgba(43,45,58,.06)}
-.num-chip,.ring{width:34px;height:34px;border-radius:50%;background:#EFE8E0;display:grid;place-items:center;font-size:11px;font-weight:600;margin-bottom:16px}
-.card h3{font-family:var(--serif);font-size:22px;color:var(--charcoal);margin-bottom:8px}
-.card p{font-size:14px}
-#what,#discretion,#pricing{background:#fff}
-.what-top,.steps-top{display:flex;justify-content:space-between;gap:24px;margin-bottom:28px}
-.aud-grid,.close-grid,.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.aud-card{background:#fff;border:1px solid #E4DDD4;border-radius:20px;padding:20px;margin-bottom:12px}
-.tier{border-radius:24px;padding:24px;border:1px solid #E4DDD4}
-.tier-01{background:var(--putty)}.tier-02{background:#fff;box-shadow:0 22px 50px rgba(43,45,58,.08)}
-.most{position:absolute;top:0;right:24px;background:var(--dusted-iris);padding:8px 12px;border-radius:0 0 12px 12px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
-.tier{position:relative}
-.tier h3{font-family:var(--serif);font-size:28px;color:var(--charcoal)}
-.price b{font-family:var(--serif);font-size:36px}
-.feat{margin:8px 0;font-size:14px}
-.steps-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.promise{margin-top:22px;background:var(--charcoal);color:var(--putty);border-radius:18px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px}
-.bang{width:28px;height:28px;border-radius:50%;background:var(--dusted-iris);color:var(--charcoal);display:grid;place-items:center;font-weight:700}
-#close{background:var(--charcoal);color:var(--putty)}
-#close .display{color:var(--putty);font-size:clamp(40px,5vw,60px)}
-.founder{border:1px solid rgba(197,209,199,.28);background:rgba(53,55,70,.45);border-radius:24px;padding:22px}
-.quote-box{background:var(--putty);color:var(--charcoal);border-radius:16px;padding:18px}
-.site-footer{margin-top:40px;border-top:1px solid rgba(240,235,229,.12);padding:24px 0;display:flex;justify-content:space-between;gap:16px}
-@media(max-width:980px){.hero-grid,.cards-4,.cards-3,.steps-row,.aud-grid,.price-grid,.close-grid,.photo-pair{grid-template-columns:1fr}.photo-pair,.photo-pair figure,.photo-pair img{height:200px}}
+:root{--charcoal:#2B2D3A;--iris:#B5A7C6;--putty:#F0EBE5;--slate:#4A4E5A;--serif:"Cormorant Garamond",Georgia,serif;--sans:Inter,system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--sans);color:var(--slate);background:var(--putty);line-height:1.5}a{color:inherit;text-decoration:none}
+.top{position:sticky;top:0;z-index:20;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(240,235,229,.92);backdrop-filter:blur(12px);border-bottom:1px solid #E4DDD4}
+.brand{font-family:var(--serif);font-size:24px;color:var(--charcoal)}.tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A857E;margin-left:10px}
+.nav{display:flex;gap:16px;align-items:center;font-size:14px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.display{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;line-height:1;color:var(--charcoal)}
+.italic{font-family:var(--serif);font-style:italic;color:#B5A7C6}
+.btn{display:inline-flex;align-items:center;border-radius:999px;padding:12px 18px;font-size:14px;font-weight:500}
+.btn-iris{background:#B5A7C6;color:var(--charcoal)}.btn-ghost{border:1px solid rgba(240,235,229,.4);color:var(--putty)}.btn-dark{border:1px solid #C9C3BA;color:var(--charcoal)}
+.hero{background:radial-gradient(800px 420px at 80% 20%,rgba(181,167,198,.22),transparent 60%),linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px),var(--charcoal);background-size:auto,42px 42px,42px 42px,auto;color:var(--putty);padding:48px 0 36px}
+.hero .display{color:var(--putty);font-size:clamp(40px,5vw,62px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:start}
+.lede{margin:16px 0 20px;max-width:480px;color:#D4CFC8}.actions{display:flex;gap:10px;flex-wrap:wrap}
+.notes{display:flex;gap:14px;margin-top:16px;font-size:12px;color:#A8A39C;flex-wrap:wrap}
+.stage{display:flex;flex-direction:column;gap:12px}
+.pair{display:grid;grid-template-columns:1fr 1fr;height:200px;border-radius:18px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.pair figure{margin:0;height:200px;overflow:hidden;position:relative}.pair img{width:100%;height:200px;object-fit:cover;display:block}
+.cap{position:absolute;top:10px;left:10px;max-width:calc(100% - 20px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(43,45,58,.8);color:var(--putty);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:6px 10px;border-radius:999px}
+.snapcard{border:1px solid rgba(197,209,199,.28);background:rgba(53,55,70,.75);border-radius:18px;padding:16px 18px}
+.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(240,235,229,.12);font-size:14px}
+.row b{font-family:var(--serif);font-style:italic;font-size:22px;font-weight:500;color:var(--putty)}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;background:var(--putty);color:var(--charcoal);border-radius:12px;padding:12px 14px;margin-top:10px;font-size:13px}
+.band{padding:36px 0}.band h2{font-size:clamp(32px,4vw,48px);margin-bottom:8px}.sub{margin-bottom:18px;max-width:560px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{background:#fff;border:1px solid #E4DDD4;border-radius:16px;padding:16px;box-shadow:0 8px 20px rgba(43,45,58,.05)}
+.card h3{font-family:var(--serif);font-size:22px;color:var(--charcoal);margin:6px 0}.card p{font-size:14px}
+.n{width:28px;height:28px;border-radius:50%;background:#EFE8E0;display:grid;place-items:center;font-size:11px;font-weight:600;color:var(--charcoal)}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:start}
+.tier{border-radius:18px;padding:18px;border:1px solid #E4DDD4;position:relative}.t1{background:var(--putty)}.t2{background:#fff;box-shadow:0 16px 36px rgba(43,45,58,.08)}
+.price{font-family:var(--serif);font-size:40px;color:var(--charcoal);line-height:1}
+.ribbon{position:absolute;top:0;right:18px;background:#B5A7C6;color:var(--charcoal);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:6px 10px;border-radius:0 0 10px 10px}
+.dark{background:var(--charcoal);color:var(--putty)}.dark .display{color:var(--putty)}
+.promise{display:flex;justify-content:space-between;gap:16px;align-items:center;background:#353746;border-radius:14px;padding:14px 16px;margin-top:16px}
+footer{padding:22px 0 28px;display:flex;justify-content:space-between;gap:12px;font-size:13px;color:#B8B3AC;border-top:1px solid rgba(240,235,229,.12);margin-top:22px}
+@media(max-width:860px){.hero-grid,.split,.grid4,.grid3,.pair{grid-template-columns:1fr}.pair,.pair figure,.pair img{height:180px}.tag{display:none}}
 </style></head><body>
-<div class="float-pills"><span class="pill-iris">Founder-led • Survivor-led</span><span class="pill-white">Zero-footprint • Flat-fee</span></div>
-<header class="site-header"><div><span class="brand-name">Sophie + Sage</span><span class="brand-tag">Logistics Exit Concierge</span></div><div class="header-right"><div class="loc-pill">Henderson, NV • Remote</div><a class="pricing-link" href="#pricing">Pricing →</a></div></header>
-<section class="snap" id="hero"><div class="wrap hero-grid"><div>
-<div class="hero-badge">Trauma-informed • Survivor-led</div>
+<header class="top"><div><span class="brand">Sophie + Sage</span><span class="tag">Logistics Exit Concierge</span></div><nav class="nav"><a href="#work">What we do</a><a href="#pricing">Pricing</a><a href="intake.html">Refer</a></nav></header>
+<section class="hero"><div class="wrap hero-grid"><div>
 <h1 class="display">Your client is ready<br>to transition.</h1>
-<div class="italic">Now she needs a<br>logistics strategy.</div>
-<p class="hero-copy">Outsourced execution for coaches, family-law attorneys, and housing advocates. We never replace your coaching.</p>
-<div class="hero-actions"><a class="btn btn-iris" href="intake.html">Refer a client →</a><a class="btn btn-ghost-light" href="intake.html">15-min partner intro</a></div>
-</div>
-<div class="photo-stage">
-<div class="photo-pair">
-<figure><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Private house exterior" /><span class="photo-cap">Private placement</span></figure>
-<figure><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Interior ready for handoff" /><span class="photo-cap">Utilities live</span></figure>
-</div>
-<aside class="snapshot">
-<div class="snapshot-head"><span>Operational relief snapshot</span><span class="dot"></span></div>
-<div class="stat-row"><span>Hours saved / client</span><span class="stat-value">20+ hrs</span></div>
-<div class="stat-row"><span>Execution window</span><span class="stat-value">30 / 60 / 90 days</span></div>
-<div class="stat-row"><span>Billing model</span><span class="stat-value">Flat-fee</span></div>
-<div class="handle-box"><div class="handle-grid">
-<div class="check"><i>✓</i> Private housing</div><div class="check"><i>✓</i> Utilities + waivers</div>
-<div class="check"><i>✓</i> Movers + storage</div><div class="check"><i>✓</i> Paper trail scrub</div>
-</div></div>
-<div class="status-row"><span class="status st-sage">Site live</span><span class="status st-iris">Intake open</span></div>
+<div class="italic" style="font-size:clamp(32px,4vw,48px);margin-top:8px">Now she needs a logistics strategy.</div>
+<p class="lede">Outsourced execution for coaches, family-law attorneys, and housing advocates. Private housing. Utilities. Movers. Zero paper trail. We never replace your work — we protect your zone of genius.</p>
+<div class="actions"><a class="btn btn-iris" href="intake.html">Refer a client →</a><a class="btn btn-ghost" href="intake.html">15-min partner intro</a></div>
+<div class="notes"><span>No client poaching</span><span>24–72h blueprint</span><span>Zero-footprint default</span></div>
+</div><div class="stage"><div class="pair">
+<figure><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Private house" /><span class="cap">Private placement</span></figure>
+<figure><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Interior handoff" /><span class="cap">Utilities live</span></figure>
+</div><aside class="snapcard">
+<div class="row"><span>Hours saved / client</span><b>20+ hrs</b></div>
+<div class="row"><span>Window</span><b>30 / 60 / 90</b></div>
+<div class="row"><span>Billing</span><b>Flat-fee</b></div>
+<div class="checks"><span>✓ Housing</span><span>✓ Utilities + waivers</span><span>✓ Movers + storage</span><span>✓ Paper trail scrub</span></div>
 </aside></div></div></section>
-<section class="snap" id="problem"><div class="wrap">
-<h2 class="display">The healing is done. <span class="italic">The housing</span> isn't.</h2>
-<p class="lede" style="margin:16px 0 20px">Logistics stall the exit after the emotional work is done.</p>
-<div class="photo-pair" style="margin-bottom:24px">
-<figure><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Apartment interior" /><span class="photo-cap cap-light">Movers + storage</span></figure>
-<figure><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Bright empty room" /><span class="photo-cap cap-light">Property stays with her</span></figure>
+<section class="band" id="work"><div class="wrap">
+<h2 class="display">The healing is done. <span class="italic">The housing isn't.</span></h2>
+<p class="sub">You keep the relationship. We take the friction — discreetly, survivor-led, no coaching overlap, no legal advice.</p>
+<div class="grid4">
+<article class="card"><div class="n">01</div><h3>Paralyzed on logistics</h3><p>Leases and utilities feel impossible under surveillance.</p></article>
+<article class="card"><div class="n">02</div><h3>20+ hour hold times</h3><p>Monitored comms block the calls she can't safely make.</p></article>
+<article class="card"><div class="n">03</div><h3>Shelter feels unsafe</h3><p>She wants private housing that keeps pets and property.</p></article>
+<article class="card"><div class="n">04</div><h3>You carry the ops</h3><p>No staff to outsource the physical friction to.</p></article>
 </div>
-<div class="cards-4">
-<article class="card"><div class="num-chip">01</div><h3>Logistically paralyzed</h3><p>Leases and utilities feel impossible under surveillance.</p></article>
-<article class="card"><div class="num-chip">02</div><h3>20+ hour hold times</h3><p>Monitored comms block execution.</p></article>
-<article class="card"><div class="num-chip">03</div><h3>Shelter feels unsafe</h3><p>She wants private housing that keeps pets and property.</p></article>
-<article class="card"><div class="num-chip">04</div><h3>You carry the ops</h3><p>No staff to outsource the friction to.</p></article>
+<div class="grid3" style="margin-top:12px">
+<article class="card"><h3>Exit budgeting</h3><p>30/60/90-day survival budget built for monitored finances.</p></article>
+<article class="card"><h3>Lease + utilities</h3><p>Applications, Third-Party Designee, DV waiver advocacy.</p></article>
+<article class="card"><h3>Encrypted &amp; discreet</h3><p>Signal / Proton only. We never contact her without safe-channel consent.</p></article>
 </div></div></section>
-<section class="snap" id="what"><div class="wrap">
-<h2 class="display">You do the healing. <span class="italic">We do the logistics.</span></h2>
-<div class="cards-3" style="margin-top:24px">
-<article class="card"><h3>Exit Budgeting</h3><p>30/60/90-day survival budget for monitored finances.</p></article>
-<article class="card"><h3>Lease + Utilities</h3><p>Third-Party Designee and DV waiver advocacy.</p></article>
-<article class="card"><h3>Encrypted &amp; Discreet</h3><p>Signal / Proton. Every workflow assumes surveillance.</p></article>
-</div></div></section>
-<section class="snap" id="audiences"><div class="wrap aud-grid"><div>
+<section class="band" id="pricing" style="padding-top:0"><div class="wrap split"><div>
 <h2 class="display">We never compete with your <span class="italic">zone of genius.</span></h2>
-</div><div>
-<article class="aud-card"><h3>Coaches</h3><p>No coaching overlap. You keep the container.</p></article>
-<article class="aud-card"><h3>Family law</h3><p>We don't give legal advice. We move housing.</p></article>
-<article class="aud-card"><h3>Housing advocates</h3><p>Outsource the 20+ hour grind.</p></article>
+<div style="margin-top:16px;display:grid;gap:12px">
+<article class="card"><h3>Coaches</h3><p>No coaching overlap. White-label updates. You stay in the container.</p></article>
+<article class="card"><h3>Family law &amp; public defenders</h3><p>We don't give legal advice. We move housing against court timelines.</p></article>
+<article class="card"><h3>Housing advocates</h3><p>Outsource the portal grind. Flat-fee, grant-friendly invoicing.</p></article>
+</div></div><div>
+<h2 class="display">Flat-fee. <span class="italic">No retainers.</span></h2>
+<article class="tier t1" style="margin-top:16px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8A857E">Tier 01 · strategy</div><div style="display:flex;justify-content:space-between;align-items:baseline"><h3 class="display" style="font-size:28px">Exit Blueprint</h3><div class="price">$250</div></div><p>Audit, budget, credit triage, document checklist.</p><a class="btn btn-dark" href="intake.html" style="margin-top:12px">Get the Blueprint →</a></article>
+<article class="tier t2" style="margin-top:12px"><div class="ribbon">Most requested</div><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8A857E">Tier 02 · execution</div><div style="display:flex;justify-content:space-between;align-items:baseline"><h3 class="display" style="font-size:28px">Rapid Placement</h3><div class="price">$750</div></div><p>Tier 1 plus housing, utilities, movers, and handoff.</p><a class="btn btn-iris" href="intake.html" style="margin-top:12px">Refer for Placement →</a></article>
 </div></div></section>
-<section class="snap" id="pricing"><div class="wrap">
-<h2 class="display">Simple, flat-fee. <span class="italic">No retainers.</span></h2>
-<div class="price-grid" style="margin-top:24px">
-<article class="tier tier-01"><h3>The Exit Blueprint</h3><div class="price"><b>$250</b></div><p class="feat">Audit, budget, checklist.</p><a class="btn btn-ghost-dark btn-wide" href="intake.html">Get the Blueprint →</a></article>
-<article class="tier tier-02"><div class="most">Most requested</div><h3>Rapid Housing Placement</h3><div class="price"><b>$750</b></div><p class="feat">Tier 1 + full execution.</p><a class="btn btn-iris btn-wide" href="intake.html">Refer for Placement →</a></article>
-</div></div></section>
-<section class="snap" id="steps"><div class="wrap">
+<section class="dark"><div class="wrap band">
 <h2 class="display">Intake to move-in <span class="italic">in 4 steps.</span></h2>
-<div class="steps-row" style="margin-top:24px">
-<article class="card"><div class="ring">01</div><h3>Safe Intake</h3><p>Signal or Proton via partner.</p></article>
-<article class="card"><div class="ring">02</div><h3>Blueprint</h3><p>Packet to partner if unsafe.</p></article>
-<article class="card"><div class="ring">03</div><h3>Execution</h3><p>Applications, movers, waivers.</p></article>
-<article class="card"><div class="ring">04</div><h3>Handoff</h3><p>You keep the relationship.</p></article>
-</div></div></section>
-<section class="snap" id="close"><div class="wrap close-grid"><div>
-<h2 class="display">Let's make exit <span class="italic">executable.</span></h2>
-<div class="hero-actions"><a class="btn btn-iris" href="intake.html">Refer a client →</a></div>
+<div class="grid4" style="margin-top:16px">
+<article class="card"><div class="n">01</div><h3>Safe intake</h3><p>Signal or Proton via the partner.</p></article>
+<article class="card"><div class="n">02</div><h3>Blueprint</h3><p>Packet to partner if the device is unsafe.</p></article>
+<article class="card"><div class="n">03</div><h3>Execution</h3><p>Applications, waivers, movers, storage.</p></article>
+<article class="card"><div class="n">04</div><h3>Handoff</h3><p>Utilities live. You keep the relationship.</p></article>
 </div>
-<aside class="founder"><div class="quote-box"><blockquote>Every workflow is built for monitored reality.</blockquote></div></aside>
-</div>
-<footer class="site-footer wrap"><h5 class="brand-name">Sophie + Sage</h5><p>Referral-only • Henderson, NV</p></footer>
-</section></body></html>
+<div class="promise"><p><strong>Operational promise:</strong> we never replace coaching, counsel, or advocacy. Referral-only. No public client list.</p><a class="btn btn-iris" href="intake.html">Refer a client →</a></div>
+<footer><div>Sophie + Sage · Henderson, NV · Remote US</div><div>hello@sophieandsage.co · Signal by referral</div></footer>
+</div></section></body></html>
